@@ -10,6 +10,22 @@ resource "google_storage_bucket" "GCS1" {
   }
 
   uniform_bucket_level_access = true
+
+  lifecycle_rule {
+    condition {
+      age = 5
+    }
+
+    action {
+      type          = "SetStorageClass"
+      storage_class = "COLDLINE"
+    }
+  }
+
+  retention_policy {
+    is_locked        = false
+    retention_period = 86400
+  }
 }
 
 resource "google_storage_bucket_object" "picture" {
