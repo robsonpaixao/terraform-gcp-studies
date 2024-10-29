@@ -22,10 +22,10 @@ resource "google_storage_bucket" "GCS1" {
     }
   }
 
-  retention_policy {
-    is_locked        = false
-    retention_period = 86400
-  }
+  # retention_policy {
+  #   is_locked        = false
+  #   retention_period = 86400
+  # }
 }
 
 resource "google_storage_bucket_object" "picture" {
