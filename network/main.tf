@@ -17,6 +17,15 @@ resource "google_compute_subnetwork" "sub-sg" {
   private_ip_google_access = true
 }
 
+resource "google_compute_firewall" "allow-icmp" {
+  name    = "allow-icmp"
+  network = google_compute_network.custom-vpc-tf.id
+  allow {
+    protocol = "icmp"
+  }
+  source_ranges = ["179.63.118.0/32"]
+  priority      = 455
+}
 
 output "auto" {
   value = google_compute_network.auto-vpc-tf.id
